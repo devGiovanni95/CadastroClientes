@@ -29,39 +29,75 @@ FILE* AbreArquivo(char modo, char caminho[30]){
 	
 }
 
+	struct cliente{
+		char cpf[14];
+		char nomeInteiro[50];
+		char genero[10];
+		char email[40];
+		char dataNascimento[10];
+		char celular[15];
+		char telefone[15];
+		char telefoneRecado[15];
+		char rua[50];
+		int numeroDaCasa;
+		char cep[10];
+		char complemento[20];
+		char cidade[30];
+		char estado[20];
+		char planoContemplado[10];
+		char situacaoPlano[10];	
+	}
+
 //funcao com parametro indicativo do tipo de arquivo
 void FecharArquivo(FILE *arquivo){
 	//fechar o arquivo.txt
 	fclose(arquivo);
 }
 
-void Cadastro(char nome[30],int telefone){
+ Cadastro(cliente->nomeInteiro,cliente->celular){
 	FILE *arquivo;
 	arquivo = AbreArquivo('a', "cadastroCliente.txt");
-	fprintf(arquivo, "%s %d\n",nome, telefone);
+	fprintf(arquivo, "%s %s\n",cliente->nomeInteiro,cliente->celular);
 	FecharArquivo(arquivo);
 }
 
 void Listar(){
 	FILE *arquivo;
-	char nome[30];
-	int telefone;
+	cliente->nomeInteiro;
+	cliente->celular;
 	
 	arquivo = AbreArquivo('l',"cadastroCliente.txt");
 	//enquando não for fim do arquivo
 	while(!feof(arquivo)){
-		fscanf(arquivo, "%s %d ", &nome, &telefone);
+		fscanf(arquivo, "%s %s ", &cliente->nomeInteiro, &cliente->celular);
 		printf("Nome: %s - Telefone: %d\n", nome, telefone);
 	}
 	FecharArquivo(arquivo);
 }
 
-int main2(){
+int main(){
 	setlocale(LC_ALL,"Portuguese");
-
 	int opcao;
-	char nome[30];
-	int telefone;
+//crindo uma struct com varios atributos
+	struct cliente{
+		char cpf[14];
+		char nomeInteiro[50];
+		char genero[10];
+		char email[40];
+		char dataNascimento[10];
+		char celular[15];
+		char telefone[15];
+		char telefoneRecado[15];
+		char rua[50];
+		int numeroDaCasa;
+		char cep[10];
+		char complemento[20];
+		char cidade[30];
+		char estado[20];
+		char planoContemplado[10];
+		char situacaoPlano[10];	
+	}
+
 	
 	do{
 		//limpar tela
@@ -83,10 +119,10 @@ int main2(){
 				printf("\nDigite o nome: ");
 				//Limpar o lixo do teclado
 				setbuf(stdin, NULL);
-				gets(nome);
+				scanf("%s",&cliente->nomeInteiro);
 				printf("\nDigite o telefone: ");
-				scanf("%d", &telefone);
-				Cadastro(nome, telefone);
+				scanf("%s", &cliente->celular);
+				Cadastro(cliente->nomeInteiro, cliente->celular);
 				system("pause");
 				break;
 			case 2: 
