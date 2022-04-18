@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <locale.h>
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
@@ -20,7 +21,7 @@ FILE* AbreArquivo(char modo, char caminho[30]){
 			arquivo = fopen(caminho,"a");
 			break;
 	}
-	//se houver algum erro, o ponteiro apontarï¿½ para null
+	//se houver algum erro, o ponteiro apontam para null
 	if(arquivo==NULL){
 		printf("Não foi possivel abrir o caminho");
 		exit(0);
@@ -41,6 +42,37 @@ void Cadastro(char cpf[14],char nomeInteiro[50],char genero[10],char email[40],c
 	arquivo = AbreArquivo('a', "CadastroClientesHelpCar.txt");
 	fprintf(arquivo, "%s %s %s %s %s %s %s %s %s %d %s %s %s %s %s %s\n",cpf, nomeInteiro,genero,email,dataNascimento,celular,telefone,telefoneRecado,rua,numeroDaCasa,cep, complemento,cidade,estado,planoContemplado,situacaoPlano);
 	FecharArquivo(arquivo);
+}
+
+
+void ContagemLinhas(){
+	FILE *arquivo;
+	
+	int linhas = 0;
+	char texto[500];//tem 500 pois é a quantidade que vamos ler no while
+	arquivo = AbreArquivo('l',"CadastroClientesHelpCar.txt");
+	
+	if(arquivo==NULL){
+		printf("Não foi possivel abrir o caminho");
+		exit(0);
+	}
+	//enquanto nao chegar no fim do arquivo continua lendo o arquivo
+	while(!feof(arquivo)){
+		//ler os arquivos de texto e salvar numa variavel
+		//ate quantos caracteres voamos ler
+		//ponteiro para o que vamos ler
+		fgets(texto, 500, arquivo);
+		//printf("%s", texto);
+		//se o comprimento do texto(strlen = le o comprimento do arquivo)
+		if(strlen(texto) < 499){
+			linhas++;
+		//	printf("%d:%s------\n", linhas, texto);
+		}
+		
+	}
+	printf("A quandidade de linhas é: %d", linhas);
+	FecharArquivo(arquivo);
+
 }
 
 void Listar(){
@@ -198,6 +230,11 @@ int main(){
 				break;
 			case 2: 
 				Listar();
+				system("pause");
+				break;
+			
+				case 4: 
+				ContagemLinhas();
 				system("pause");
 				break;
 			
